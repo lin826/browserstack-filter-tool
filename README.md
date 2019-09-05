@@ -1,8 +1,10 @@
 # BrowserStack Filter Tool
 
-This is a filter tool to select the most recent browsers from BrowserStack API
+> Not ready yet 🙀
 
-Ｎo dependency in this project.
+This is a filter tool to select the most recent browsers from BrowserStack API.
+
+No dependency in this project.
 
 But remember to add `browserstack-helper.conf.js` file into your root folder.
 
@@ -35,3 +37,6 @@ module.exports = (config) => {
 ## LICENSE
 
 Please see in LICENSE file.
+
+## NPM
+https://www.npmjs.com/package/browserstack-filter-tool
