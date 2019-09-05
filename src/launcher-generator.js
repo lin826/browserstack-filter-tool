@@ -1,7 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 
-const configHelper = require('browserstack-helper.conf');
+const configHelper = require('./browserstack-helper.conf.js');
 
 const httpsURL = 'https://'+ configHelper.username + ':' + configHelper.accessKey + '@api.browserstack.com/5/browsers?flat=true';
 
