@@ -25,6 +25,12 @@ function initBrowserstackCapability() {
   browserstackCapability = JSON.parse(browserstackCapability);
 }
 
+function generateLaunchers() {
+  let requiredLaunchers = getRequiredLaunchers();
+  // Add on additional launchers.
+  return Object.assign(requiredLaunchers, configHelper.additionalLaunchers);
+}
+
 function getRequiredLaunchers() {
 
   let candidateContainer = {};
@@ -100,10 +106,4 @@ function getRequiredLaunchers() {
     }
     return result;
   }
-}
-
-function generateLaunchers() {
-  let requiredLaunchers = getRequiredLaunchers();
-  // Add on additional launchers.
-  return Object.assign(requiredLaunchers, configHelper.additionalLaunchers);
 }
