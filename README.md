@@ -1,7 +1,5 @@
 # BrowserStack Filter Tool
 
-> Not ready yet 🙀
-
 This is a filter tool to select the most recent browsers from BrowserStack API.
 
 No dependency in this project.
