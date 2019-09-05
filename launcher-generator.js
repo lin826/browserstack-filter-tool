@@ -1,24 +1,24 @@
-const https = require('https');
 const fs = require('fs');
+const https = require('https');
 
-const configHelper = require('./browserstack-helper.conf.js');
+const configHelper = require('./browserstack-helper.conf');
 
 const httpsURL = 'https://'+ configHelper.username + ':' + configHelper.accessKey + '@api.browserstack.com/5/browsers?flat=true';
 
-module.exports = https.get( httpsURL, (httpsResponse) => {
-                  httpsResponse.setEncoding('utf8');
-                  httpsResponse.on('data', (chunk) => {
-                    browserstackCapability += chunk;
-                  });
-                  httpsResponse.on('end', () => {
-                    initBrowserstackCapability();
-                    let result = generateLaunchers();
+https.get( httpsURL, (httpsResponse) => {
+  httpsResponse.setEncoding('utf8');
+  httpsResponse.on('data', (chunk) => {
+    browserstackCapability += chunk;
+  });
+  httpsResponse.on('end', () => {
+    initBrowserstackCapability();
+    let result = generateLaunchers();
 
-                    // Save as a JavaScript file.
-                    const JScontent = 'module.exports = ' + JSON.stringify(result);
-                    fs.writeFile('._launchers.js', JScontent, (err) => {});
-                  });
-                });
+    // Save as a JS file.
+    const JScontent = 'module.exports = ' + JSON.stringify(result);
+    fs.writeFile('._launchers.js', JScontent, (err) => {});
+  });
+});
 
 let browserstackCapability = '';
 function initBrowserstackCapability() {

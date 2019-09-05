@@ -10,13 +10,27 @@ But remember to add `browserstack-helper.conf.js` file into your root folder.
 
 ## Usage
 
+In Karma, for example, two steps to use: `Build` and `Import`.
+
 ### Build and Run
 
-`node launcher-generator.js`
+Please add a script wherever before `karma start karma.conf.js` (usually in `package.json`).
+
+That is, use
+
+```shell
+node ./node_modules/browserstack-filter-tool/launcher-generator.js && karma start karma.conf.js
+```
+
+instead of
+
+```shell
+karma start karma.conf.js
+```
 
 ### Import into the configuration
 
-In Karma, for example, your configuration can be like this.
+Your configuration can be set like this.
 
 ```javascript
 // karma.conf.js

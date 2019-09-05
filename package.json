@@ -1,9 +1,10 @@
 {
   "name": "browserstack-filter-tool",
-  "version": "0.1.2",
+  "version": "0.1.2-alpha",
   "description": "Filter out the most recent browsers from Browserstack API",
   "main": "src/launcher-generator.js",
   "scripts": {
+    "build": "node src/launcher-generator.js",
     "test": "npm test"
   },
   "repository": {
@@ -11,7 +12,7 @@
     "url": "git+https://github.com/lin826/browserstack-filter-tool.git"
   },
   "keywords": [
-    "browserstack"
+    "browserstack-plugin"
   ],
   "author": "I-Ju Lin<liniju@gapp.nthu.edu.tw>",
   "license": "See LICENSE",
