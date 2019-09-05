@@ -1,6 +1,10 @@
 # BrowserStack Filter Tool
 
-There's no dependency in this project. No need to install anything. But remember to set the `browserstack-helper.conf.js` file.
+This is a filter tool to select the most recent browsers from BrowserStack API
+
+Ｎo dependency in this project.
+
+But remember to add `browserstack-helper.conf.js` file into your root folder.
 
 ## Usage
 
@@ -10,7 +14,7 @@ There's no dependency in this project. No need to install anything. But remember
 
 ### Import into the configuration
 
-In Karma for example, your configuration can be like this.
+In Karma, for example, your configuration can be like this.
 
 ```javascript
 // karma.conf.js
