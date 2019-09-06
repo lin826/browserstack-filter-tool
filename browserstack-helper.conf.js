@@ -25,7 +25,7 @@ module.exports = {
   // 應該要附加的其他項目
   templateLauncher: {
     base: 'BrowserStack',
-    project: '@vip3/js-auth-sdk',
+    project: 'browserstack-filter-tool-example',
     video: false
   },
 
