@@ -12,7 +12,8 @@
     "url": "git+https://github.com/lin826/browserstack-filter-tool.git"
   },
   "keywords": [
-    "browserstack-plugin"
+    "browserstack-plugin",
+    "browserstack"
   ],
   "author": "I-Ju Lin<liniju@gapp.nthu.edu.tw>",
   "license": "See LICENSE",

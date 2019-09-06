@@ -8,7 +8,43 @@ But remember to add `browserstack-helper.conf.js` file into your root folder.
 
 ## Usage
 
-In Karma, for example, two steps to use: `Build` and `Import`.
+In Karma, for example, two steps to use: `Set`, `Build`, and `Import`.
+
+### Setting
+
+Manually create a file `browserstack-helper.conf.js` like below:
+
+```javascript
+module.exports = {
+  // Replace with your Browserstack account's username and accessKey
+  username: BROWSERSTACK_USERNAME,
+  accessKey: BROWSERSTACK_ACCESS_KEY,
+
+  osList: {
+    'OS X': ['Mojave'],
+    'Windows': ['10']
+  },
+
+  browserList: [ 'edge', 'chrome', 'firefox', 'safari'],
+
+  excludeList: [
+    { os: 'Windows', browser: 'safari'}
+  ],
+
+  browserVersionRange: 2,
+
+  templateLauncher: {
+    base: 'BrowserStack'
+  },
+
+  additionalLaunchers: {
+    ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+    }
+  }
+}
+```
 
 ### Build and Run
 
@@ -44,7 +80,7 @@ module.exports = (config) => {
 };
 ```
 
-## Settings
+## Settings Example
 
 Currently, all the following settings are necessary in `browserstack-helper.conf.js`.
 
@@ -56,8 +92,8 @@ Currently, all the following settings are necessary in `browserstack-helper.conf
 
   // 共測兩種作業系統，Key 為作業系統名稱，Value 為要測的版本名稱
   osList: {
-    'OS X': ['Mojave'],
-    'Windows': ['10']
+    'OS X': ['Mojave', 'High Sierra'],
+    'Windows': ['10', '7']
   },
 
   // 每種 OS 下要測這五種瀏覽器
