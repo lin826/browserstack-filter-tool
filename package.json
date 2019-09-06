@@ -1,6 +1,6 @@
 {
   "name": "browserstack-filter-tool",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Filter out the most recent browsers from Browserstack API",
   "main": "src/launcher-generator.js",
   "scripts": {
