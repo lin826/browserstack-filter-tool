@@ -8,7 +8,7 @@ But remember to add `browserstack-helper.conf.js` file into your root folder.
 
 ## Usage
 
-In Karma, for example, two steps to use: `Set`, `Build`, and `Import`.
+In Karma, for example, three steps to use: `Set`, `Build`, and `Import`.
 
 ### Setting
 
