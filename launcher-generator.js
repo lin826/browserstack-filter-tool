@@ -3,6 +3,12 @@ const https = require('https');
 
 const configHelper = require('../../browserstack-helper.conf');
 
+if (!configHelper.username || !configHelper.accessKey) {
+  let result = generateLaunchers();
+  writeJavaScriptFile(result);
+  return 0;
+}
+
 const httpsURL = 'https://'+ configHelper.username + ':' + configHelper.accessKey + '@api.browserstack.com/5/browsers?flat=true';
 try {
   https.get( httpsURL, (httpsResponse) => {
@@ -13,10 +19,7 @@ try {
     httpsResponse.on('end', () => {
       initBrowserstackCapability();
       let result = generateLaunchers();
-
-      // Save as a JS file.
-      const JScontent = 'module.exports = ' + JSON.stringify(result);
-      fs.writeFile('._launchers.js', JScontent, (err) => {});
+      writeJavaScriptFile(result);
     });
   });
 } catch {
@@ -28,6 +31,12 @@ try {
 let browserstackCapability = '';
 function initBrowserstackCapability() {
   browserstackCapability = JSON.parse(configHelper.additionalLaunchers);
+}
+
+function writeJavaScriptFile(result) {
+  // Save as a JS file.
+  const JScontent = 'module.exports = ' + JSON.stringify(result);
+  fs.writeFile('._launchers.js', JScontent, (err) => {});
 }
 
 function generateLaunchers() {
