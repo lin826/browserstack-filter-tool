@@ -3,7 +3,9 @@ const https = require('https');
 
 const configHelper = require('../../browserstack-helper.conf');
 
+let browserstackCapability = '';
 if (!configHelper.username || !configHelper.accessKey) {
+  initBrowserstackCapability();
   let result = generateLaunchers();
   writeJavaScriptFile(result);
   return 0;
@@ -28,7 +30,6 @@ try {
   fs.writeFile('._launchers.js', JScontent, (err) => {});
 }
 
-let browserstackCapability = '';
 function initBrowserstackCapability() {
   browserstackCapability = JSON.parse(configHelper.additionalLaunchers);
 }
