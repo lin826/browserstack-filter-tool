@@ -1,11 +1,10 @@
 const fs = require('fs');
 const https = require('https');
 
-const configHelper = require('../../browserstack-helper.conf');
+const configHelper = require('./browserstack-helper.conf');
 
 let browserstackCapability = '';
-if (!configHelper.username || !configHelper.accessKey) {
-  initBrowserstackCapability();
+if (configHelper.username === undefined || configHelper.accessKey === undefined) {
   let result = generateLaunchers();
   writeJavaScriptFile(result);
   return 0;
@@ -19,7 +18,6 @@ try {
       browserstackCapability += chunk;
     });
     httpsResponse.on('end', () => {
-      initBrowserstackCapability();
       let result = generateLaunchers();
       writeJavaScriptFile(result);
     });
@@ -30,17 +28,9 @@ try {
   fs.writeFile('._launchers.js', JScontent, (err) => {});
 }
 
-function initBrowserstackCapability() {
-  if(configHelper.additionalLaunchers) {
-    browserstackCapability = JSON.parse(configHelper.additionalLaunchers);
-  } else {
-    browserstackCapability = [];
-  }
-}
-
 function writeJavaScriptFile(result) {
   // Save as a JS file.
-  const JScontent = 'module.exports = ' + JSON.stringify(result);
+  const JScontent = 'module.exports = ' + JSON.stringify(result) + ';';
   fs.writeFile('._launchers.js', JScontent, (err) => {});
 }
 
@@ -51,27 +41,32 @@ function generateLaunchers() {
 }
 
 function getRequiredLaunchers() {
-
   let candidateContainer = {};
-  for (let launcher of browserstackCapability) {
-    if ( validLauncher(launcher) ) {
-      const launcherIndexName = `BrowserStack${launcher.os}${launcher.os_version}${launcher.browser}`.replace(/ /g,'');
-      updateCandidateLauncher(launcherIndexName, launcher);
+
+  try {
+    browserstackCapability = JSON.parse(browserstackCapability);
+    for (let launcher of browserstackCapability) {
+      if ( validLauncher(launcher) ) {
+        const launcherIndexName = `BrowserStack${launcher.os}${launcher.os_version}${launcher.browser}`.replace(/ /g,'');
+        updateCandidateLauncher(launcherIndexName, launcher);
+      }
     }
+  } catch {
+    // Do Nothing.
   }
   return formalizeCandidateLauncher();
 
   function validLauncher(launcher) {
-    const notExcluded = configHelper.excludeList.reduce((result, eachExclude) => {
+    const isIncluded = configHelper.excludeList.reduce((result, eachExclude) => {
       if (eachExclude.os == launcher.os && eachExclude.browser == launcher.browser) {
         return false;
       } else {
         return result;
       }
     }, true);
-    return notExcluded && configHelper.osList[launcher.os]
-      && configHelper.browserList.includes(launcher.browser)
-      && ( configHelper.osList[launcher.os].length == 0 || configHelper.osList[launcher.os].includes(launcher.os_version));
+    return isIncluded 
+      && configHelper.osList[launcher.os]
+      && configHelper.browserList.includes(launcher.browser);
   }
 
   function updateCandidateLauncher(launcherName, newLauncher) {

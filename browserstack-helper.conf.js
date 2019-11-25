@@ -32,8 +32,8 @@ module.exports = {
   // 手動加入的額外 launcher
   additionalLaunchers: {
     ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+      base: 'ChromeHeadless',
+      flags: ['--no-sandbox']
     }
   }
 }
