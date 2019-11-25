@@ -31,7 +31,11 @@ try {
 }
 
 function initBrowserstackCapability() {
-  browserstackCapability = JSON.parse(configHelper.additionalLaunchers);
+  if(configHelper.additionalLaunchers) {
+    browserstackCapability = JSON.parse(configHelper.additionalLaunchers);
+  } else {
+    browserstackCapability = [];
+  }
 }
 
 function writeJavaScriptFile(result) {
