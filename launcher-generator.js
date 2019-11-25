@@ -1,7 +1,7 @@
 const fs = require('fs');
 const https = require('https');
 
-const configHelper = require('./browserstack-helper.conf');
+const configHelper = require('../../browserstack-helper.conf');
 
 let browserstackCapability = '';
 if (configHelper.username === undefined || configHelper.accessKey === undefined) {
@@ -64,8 +64,9 @@ function getRequiredLaunchers() {
         return result;
       }
     }, true);
-    return isIncluded 
+    return isIncluded
       && configHelper.osList[launcher.os]
+      && configHelper.osList[launcher.os].includes(launcher.os_version)
       && configHelper.browserList.includes(launcher.browser);
   }
 
