@@ -25,13 +25,13 @@ try {
 } catch {
   // Save as a JS file.
   const JScontent = 'module.exports = ' + JSON.stringify(result);
-  fs.writeFile('._launchers.js', JScontent, (err) => {});
+  fs.writeFile('browserstack-launchers.js', JScontent, (err) => {});
 }
 
 function writeJavaScriptFile(result) {
   // Save as a JS file.
   const JScontent = 'module.exports = ' + JSON.stringify(result) + ';';
-  fs.writeFile('._launchers.js', JScontent, (err) => {});
+  fs.writeFile('browserstack-launchers.js', JScontent, (err) => {});
 }
 
 function generateLaunchers() {

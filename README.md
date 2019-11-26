@@ -8,7 +8,17 @@ But remember to add `browserstack-helper.conf.js` file into your root folder.
 
 ## Usage
 
-In Karma, for example, three steps to use: `Set`, `Build`, and `Import`.
+### Installation
+
+```shell
+npm install --save-dev browserstack-filter-tool
+```
+
+or
+
+```shell
+yarn add -D browserstack-filter-tool
+```
 
 ### Setting
 
@@ -68,7 +78,7 @@ Your configuration can be set like this.
 
 ```javascript
 // karma.conf.js
-const browserstackLaunchers = require('./._launchers');
+const browserstackLaunchers = require('./browserstack-launchers');
 
 module.exports = (config) => {
   config.set({
@@ -85,4 +95,5 @@ module.exports = (config) => {
 Please see in LICENSE file.
 
 ## NPM
+
 https://www.npmjs.com/package/browserstack-filter-tool
